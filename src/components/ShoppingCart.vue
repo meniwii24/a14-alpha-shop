@@ -9,8 +9,8 @@
       <!--運費-->
       <div class="other-cost">
         <label>運費</label>
-        <label class="other-price" v-show="deliveryFee = 0">免費</label>
-        <label class="other-price" v-show="deliveryFee = 500">$ 500</label>
+        <label class="other-price" v-show="(deliveryFee === 0)">免費</label>
+        <label class="other-price" v-show="(deliveryFee === 500)">$ 500</label>
       </div>
       <!--小計-->
       <div class="other-cost">
@@ -49,6 +49,10 @@ export default {
     CartItems,
   },
 
+  props: {
+    deliveryFee: Number,
+  },
+
   data() {
     return {
       productinfo: [],
@@ -61,7 +65,7 @@ export default {
     fetchCart() {
       const { productinfo } = dummydata;
       this.productinfo = productinfo;
-    }
+    },
   },
   computed: {
     // 購物車裡的品項
@@ -77,9 +81,12 @@ export default {
     },
 
     // 目前購買的金額
-    total() {
+    itemstotal() {
       return this.productsInCart.reduce((sum, p) => sum + p.sum, 0);
     },
+    total() {
+      return this.itemstotal + this.deliveryFee;
+    }
   },
 };
 </script>
