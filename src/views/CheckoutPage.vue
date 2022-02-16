@@ -3,9 +3,9 @@
     <h1>結帳</h1>
     <main>
       <!-- 左側結帳資訊 -->
-      <LeftPart v-bind:delivery="delivery" @delivery-change="deliveryfee"/>
+      <LeftPart v-bind:delivery="delivery" @delivery-change="deliveryFeeChange"/>
       <!-- 右側購物籃 ShoppingCart -->
-      <ShoppingCart v-bind:delivery="delivery" />
+      <ShoppingCart v-bind:deliveryFee="deliveryFee" />
     </main>
   </div>
 </template>
@@ -30,7 +30,7 @@ export default {
     this.fetchDelivery();
   },
   methods: {
-    deliveryfee(newfee) {
+     deliveryFeeChange(newfee) {
       this.deliveryFee = newfee
     }
   }
