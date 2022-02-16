@@ -115,7 +115,7 @@
                 <div class="form-row">
                   <div class="shipping-method">
                     <div class="choice">
-                      <input name="shipping-method" type="radio" class="raido" @click="standard" />
+                      <input name="shipping-method" type="radio" class="raido" @click="deliveryFee = 0" />
                       <label class="way"> 標準運送 <br />約 3~7 個工作天</label>
                     </div>
                     <div>
@@ -454,11 +454,10 @@ export default {
     deliveryFee: 0,
   }),
 
-  methods: {
-      standard() {
-          this.$emit("delivery-change", deliveryFee = 500)
-      }
+  watch:{
+    deliveryFee(val){
+      this.$emit("delivery-change", val)
+    }
   }
 }
 </script>
-
